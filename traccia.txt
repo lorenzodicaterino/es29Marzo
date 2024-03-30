@@ -1,0 +1,21 @@
+creare un sistema di gestione per Olivander. ogni prodotto all'interno dello store è una bacchetta. ogni bacchetta è caratterizzata da :
+-codice
+-materiale, 
+-nucleo, 
+-lunghezza, 
+-resistenza,
+-nome mago proprietario, 
+-se presente scegliere la casata(select)
+-foto
+
+Ogni casata è caratterizzata da:
+-nome
+-descrizione
+-logo
+-numero di bacchette presenti
+
+RICHIESTE:
+quando consulto la tabella delle casate, visualizzare il totale delle bacchette assegnate a tale
+
+
+1. inserimento e eliminazione

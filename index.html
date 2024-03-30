@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div style="text-align: center">
+      <img src="img/onhl7qjg.png" class="mt-3" style="width: 200px" />
+    </div>
+    <div class="container mt-1 ml-5">
+      <table class="table table-striped mt-3">
+        <div class="row">
+       
+            <thead class="text-align"  >     
+                <div class="col">
+              <th style="vertical-align: middle;">#</th>
+              </div>
+              <div class="col">
+              <th style="vertical-align: middle;">Codice</th>
+              </div>
+              <div class="col">
+              <th style="vertical-align: middle;">Materiale</th>
+              </div>
+              <div class="col">
+              <th style="vertical-align: middle;">Nucleo</th>
+              </div>
+              <div class="col">
+              <th style="vertical-align: middle;">Lunghezza</th>
+              </div>
+             <div class="col">
+              <th style="vertical-align: middle;">Resistenza</th>
+              </div>
+              <div class="col-5">
+              <th style="vertical-align: middle;">Mago proprietario</th>
+              </div>
+              <div class="col">
+              <th style="vertical-align: middle;">Casata</th>
+              </div>
+              <div class="col">
+              <th style="vertical-align: middle;">Azioni</th>
+              </div>
+              <th>
+                <!-- inserimento bacchetta -->
+ <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#inserimentoBacchetta"
+            height="10px"
+            
+          >
+            <i class="fa-solid fa-plus"></i>
+          </button>
+          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modificaBacchette">
+  Launch demo modal
+</button> -->
+          </th>
+          <th>
+               
+          <!-- Button trigger modal inserimento casata -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#inserimentoCasata"
+          >
+            <i class="fa-solid fa-home"></i>
+          </button>
+                </th>
+            </thead>
+            </div>
+            <tbody id="corpo-tabella-bacchetta">
+              <!-- CORPO TABELLA INNERHTML-->
+            </tbody>
+          </table>
+        </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal bacchetta-->
+    <div
+      class="modal fade"
+      id="inserimentoBacchetta"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="inserimentoBacchetta"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="inserimentoBacchetta">
+              Inserisci Bacchetta
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="form-group">
+                <label for="inserimento-codice">Codice</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inserimento-codice"
+                  placeholder="Inserisci codice"
+                />
+              </div>
+              <div class="form-group">
+                <label for="inserimento-materiale">Materiale</label>
+                <select class="form-control" id="inserimento-materiale">
+                 <option value="Nessuno" selected="selected">Nessuno</option>
+                <option value="Legno">Legno</option>
+                <option value="Metallo">Metallo</option>
+                <option value="Cartone">Cartone</option>
+                <option value="Marmo">Marmo</option>
+                <option value="Cartongesso">Cartongesso</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="inserimento-nucleo">Nucleo</label>
+                <select id="inserimento-nucleo"  class="form-control">
+                    <option value="Nessuno" selected="selected">Nessuno</option>
+                    <option value="Corda cuor di leone">Corda cuor di leone</option>
+                    <option value="Piuma di fenice">Piuma di fenice</option>
+                    <option value="Crine di unicorno">Crine di unicorno</option>
+                    <option value="Crine di Thestral">Crine di Thestral</option>
+                    <option value="Corallo">Corallo</option>
+                    <option value="Dittamo">Dittamo</option>
+                    <option value="Pelo di wampus">Pelo di wampus</option>
+                    <option value="Baffo di Kneazle">Baffo di Kneazle</option>
+                    <option value="Ali di fata">Ali di fata</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="inserimento-lunghezza">Lunghezza</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inserimento-lunghezza"
+                  placeholder="Inserisci lunghezza"
+                />
+              </div>
+              <div class="form-group">
+                <label for="inserimento-resistenza">Resistenza</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inserimento-resistenza"
+                  placeholder="Inserisci resistenza"
+                />
+              </div>
+              <div class="form-group">
+                <label for="inserimento-nome">Nome mago</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inserimento-nome"
+                  placeholder="Inserisci nome mago"
+                />
+              </div>
+              <div class="form-group">
+                <label for="inserimento-casata">Nome casata</label>
+                <select class="form-control" id="inserimento-casata">
+                    <script>
+                          elencoCasateLocal = JSON.parse(localStorage.getItem("elencoCasateLocal"));
+
+  let codice = '<option value="Nessuno" selected="selected">Nessuno</option>';
+
+  for (const [idx, item] of elencoCasateLocal.entries()) {
+    codice += `<option value="${item.nome}">${item.nome}</option>`;
+  }
+
+  document.getElementById("inserimento-casata").innerHTML = codice;
+                    </script>
+                </select>
+              </div>
+              <div class="form-group">
+                <div class="form-group">
+                  <label for="inserimento-foto">Foto</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inserimento-foto"
+                    placeholder="Inserisci foto"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Indietro
+            </button>
+            <button type="button" class="btn btn-success" onclick="salva()">
+              Salva
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal casata -->
+<div class="modal fade" id="inserimentoCasata" tabindex="-1" role="dialog" aria-labelledby="inserimentoCasata" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inserimentoCasata">Inserisci casata</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="form-group">
+            <label for="nome-casata">Nome casata</label>
+            <input class="form-control" type="text" id="nome-casata" placeholder="Inserisci nome"/>
+        </div>
+        <div class="form-group">
+            <label for="descrizione-casata">Descrizione casata</label>
+            <input class="form-control" type="text" id="descrizione-casata"placeholder="Inserisci descrizione"/>
+        </div>
+        <div class="form-group">
+            <label for="logo-casata">Logo casata</label>
+            <input class="form-control" type="text" id="logo-casata" placeholder="Inserisci logo"/>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#visualizzaCasate">Visualizza tutte le casate</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Indietro</button>
+        <button type="button" class="btn btn-success" onclick="salvaCasate()">Salva</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="visualizzaCasate">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Casate</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <table class="table table-striped">
+                <div class="row">
+                  <thead style="text-align: center">
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Descrizione</th>
+                    <th>Logo</th>
+                    <th>Numero bacchette</th>
+                  </thead>
+                </div>
+                <tbody id="corpo-tabella-casate">
+                  <!-- stampa bacchette-->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="chiudiViewCasate()"
+              >
+                Chiudi
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Button trigger modal -->
+
+
+<!-- Modal
+<div class="modal fade" id="modificaBacchette" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-identificativo="">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+                <label for="modifica-codice">Codice</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="modifica-codice"
+                  placeholder="Inserisci codice"
+                />
+              </div>
+              <div class="form-group">
+                <label for="modifica-materiale">Materiale</label>
+                <select class="form-control" id="modifica-materiale">
+                 <option value="Nessuno" selected="selected">Nessuno</option>
+                <option value="Legno">Legno</option>
+                <option value="Metallo">Metallo</option>
+                <option value="Cartone">Cartone</option>
+                <option value="Marmo">Marmo</option>
+                <option value="Cartongesso">Cartongesso</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="modifica-nucleo">Nucleo</label>
+                <select id="modifica-nucleo"  class="form-control">
+                    <option value="Nessuno" selected="selected">Nessuno</option>
+                    <option value="Corda cuor di leone">Corda cuor di leone</option>
+                    <option value="Piuma di fenice">Piuma di fenice</option>
+                    <option value="Crine di unicorno">Crine di unicorno</option>
+                    <option value="Crine di Thestral">Crine di Thestral</option>
+                    <option value="Corallo">Corallo</option>
+                    <option value="Dittamo">Dittamo</option>
+                    <option value="Pelo di wampus">Pelo di wampus</option>
+                    <option value="Baffo di Kneazle">Baffo di Kneazle</option>
+                    <option value="Ali di fata">Ali di fata</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="modifica-lunghezza">Lunghezza</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="modifica-lunghezza"
+                  placeholder="Inserisci lunghezza"
+                />
+              </div>
+              <div class="form-group">
+                <label for="modifica-resistenza">Resistenza</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="modifica-resistenza"
+                  placeholder="Inserisci resistenza"
+                />
+              </div>
+              <div class="form-group">
+                <label for="modifica-nome">Nome mago</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="modifica-nome"
+                  placeholder="Inserisci nome mago"
+                />
+              </div>
+              <div class="form-group">
+                <label for="modifica-casata">Nome casata</label>
+                <select class="form-control" id="modifica-casata">
+                    <script>
+                          elencoCasateLocal = JSON.parse(localStorage.getItem("elencoCasateLocal"));
+
+  let codice1 = '<option value="Nessuno" selected="selected">Nessuno</option>';
+
+  for (const [idx, item] of elencoCasateLocal.entries()) {
+    codice += `<option value="${item.nome}">${item.nome}</option>`;
+  }
+
+  document.getElementById("modifica-casata").innerHTML = codice1;
+                    </script>
+                </select>
+              </div>
+              <div class="form-group">
+                <div class="form-group">
+                  <label for="modifica-foto">Foto</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="modifica-foto"
+                    placeholder="Inserisci foto"
+                  />
+                </div>
+      </div>
+      </div></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+        <button type="button" class="btn btn-primary">Salva modifiche</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+</div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/script.js"></script>
+   
+
+
+
+
+    
+  </body>
+</html>
