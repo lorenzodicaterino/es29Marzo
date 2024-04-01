@@ -1,6 +1,30 @@
 let elencoBacchette = [];
 let elencoCasate = [];
 
+const contaBacchettePerCasate = () => {
+  let elencoBacchetteLocal = JSON.parse(
+    localStorage.getItem("elencoBacchetteLocal")
+  );
+  let elencoCasateLocal = JSON.parse(localStorage.getItem("elencoCasateLocal"));
+
+  let contatore = -1;
+
+  for (let [idx, item] of elencoCasateLocal.entries()) {
+    contatore = 0;
+    for (let [idx2, item2] of elencoBacchetteLocal.entries()) {
+      if (item.nome === item2.casata) {
+        contatore = contatore + 1;
+      }
+      item.numero = contatore;
+    }
+  }
+  localStorage.setItem(
+    "elencoBacchetteLocal",
+    JSON.stringify(elencoBacchetteLocal)
+  );
+  localStorage.setItem("elencoCasateLocal", JSON.stringify(elencoCasateLocal));
+};
+
 const salva = () => {
   codice = document.getElementById("inserimento-codice").value;
   materiale = document.getElementById("inserimento-materiale").value;
@@ -39,10 +63,13 @@ const salva = () => {
   $("#inserimentoBacchetta").modal("hide");
 
   stampa();
+  contaBacchettePerCasate();
 };
 
 const stampa = () => {
-  let codice;
+  contaBacchettePerCasate();
+
+  let codice = "";
 
   let elencoBacchetteLocal = JSON.parse(
     localStorage.getItem("elencoBacchetteLocal")
@@ -59,11 +86,12 @@ const stampa = () => {
         <td>${item.resistenza}</td>
         <td>${item.mago}</td>
         <td>${item.casata}</td>
-        <td> <button class="btn btn-secondary" onclick="modificaBacchetta(${idx})">
+        <td> <button class="btn btn-secondary" onclick="modifica(${idx})">
                         <i class="fa-solid fa-pencil"></i>
                     </button> <button class="btn btn-danger" onclick="eliminaBacchetta(${idx})">
                         <i class="fa-solid fa-trash"></i>
-                    </button></i></button></td>
+                    </button></i></button>
+                    </td>
         </tr>
         `;
   }
@@ -83,35 +111,82 @@ const eliminaBacchetta = (idx) => {
   stampa();
 };
 
-// const modificaBacchetta = (indice) => {
-//   let elencoBacchetteLocal = JSON.parse(
-//     localStorage.getItem("elencoBacchetteLocal")
-//   );
+/*
+const modificaBacchetta = (indice) => {
+  let elencoBacchetteLocal = JSON.parse(
+    localStorage.getItem("elencoBacchetteLocal")
+  );
 
-//   document.getElementById("modifica-codice").value =
-//     elencoBacchetteLocal[indice].codice;
-//   document.getElementById("modifica-materiale").value =
-//     elencoBacchetteLocal[indice].materiale;
-//   document.getElementById("modifica-nucleo").value =
-//     elencoBacchetteLocal[indice].nucleo;
-//   document.getElementById("modifica-lunghezza").value =
-//     elencoBacchetteLocal[indice].lunghezza;
-//   document.getElementById("modifica-resistenza").value =
-//     elencoBacchetteLocal[indice].resistenza;
-//   document.getElementById("modifica-nome").value =
-//     elencoBacchetteLocal[indice].nome;
-//   document.getElementById("modifica-casata").value =
-//     elencoBacchetteLocal[indice].casata;
-//   document.getElementById("modifica-foto").value =
-//     elencoBacchetteLocal[indice].foto;
+  document.getElementById("modifica-codice").value =
+    elencoBacchetteLocal[indice].codice;
+  document.getElementById("modifica-materiale").value =
+    elencoBacchetteLocal[indice].materiale;
+  document.getElementById("modifica-nucleo").value =
+    elencoBacchetteLocal[indice].nucleo;
+  document.getElementById("modifica-lunghezza").value =
+    elencoBacchetteLocal[indice].lunghezza;
+  document.getElementById("modifica-resistenza").value =
+    elencoBacchetteLocal[indice].resistenza;
+  document.getElementById("modifica-nome").value =
+    elencoBacchetteLocal[indice].nome;
+  document.getElementById("modifica-casata").value =
+    elencoBacchetteLocal[indice].casata;
+  document.getElementById("modifica-foto").value =
+    elencoBacchetteLocal[indice].foto;
 
-//   $("#modificaBacchette").data("identificativo", indice);
+  $("#modificaBacchette").data("identificativo", indice);
 
-//   $("#modificaBacchette").modal("show");
+  $("#modificaBacchette").modal("show");
+};
+
+const updateBacchetta = () => {
+  codice = document.getElementById("modifica-codice").value;
+  materiale = document.getElementById("modifica-materiale").value;
+  nucleo = document.getElementById("modifica-nucleo").value;
+  lunghezza = document.getElementById("modifica-lunghezza").value;
+  resistenza = document.getElementById("modifica-resistenza").value;
+  mago = document.getElementById("modifica-nome").value;
+  casata = document.getElementById("modifica-casata").value;
+  foto = document.getElementById("modifica-foto").value;
+
+  let ogg = {
+    codice,
+    materiale,
+    nucleo,
+    lunghezza,
+    resistenza,
+    mago,
+    casata,
+    foto,
+  };
+
+  let indice = $("#modificaBacchette").data("identificativo");
+
+  let elenco = JSON.parse(localStorage.getItem("elencoBacchetteLocal"));
+  elenco[indice] = ogg;
+  localStorage.setItem("elencoBacchetteLocal", JSON.stringify(elenco));
+
+  $("#modificaBacchette").modal("hide");
+};
+*/
+
+// const modifica = (indice) => {
+//   let elenco = JSON.parse(localStorage.getItem("oggetti_amz"));
+//   console.log(elenco[indice]);
+
+//   document.getElementById("update-nome").value = elenco[indice].nome;
+//   document.getElementById("update-descrizione").value = elenco[indice].desc;
+//   document.getElementById("update-prezzo").value = elenco[indice].prez;
+//   document.getElementById("update-categoria").value = elenco[indice].cate;
+//   $("#modaleModifica").modal("show");
+//   $("#modaleModifica").data("identificativo", indice);
 // };
 
-// const updateBacchetta = () => {
+// const update = () => {
 //   let nome = document.getElementById("update-nome").value;
+//   let desc = document.getElementById("update-descrizione").value;
+//   let prez = document.getElementById("update-prezzo").value;
+//   let cate = document.getElementById("update-categoria").value;
 
 //   let ogg = {
 //     nome,
@@ -133,13 +208,12 @@ const salvaCasate = () => {
   nome = document.getElementById("nome-casata").value;
   descrizione = document.getElementById("descrizione-casata").value;
   logo = document.getElementById("logo-casata").value;
-  numero = "12";
+  numero = 0;
 
   let ogg = {
     nome,
     descrizione,
     logo,
-    numero,
   };
 
   elencoCasate = JSON.parse(localStorage.getItem("elencoCasateLocal"));
@@ -156,6 +230,7 @@ const salvaCasate = () => {
 
   stampaCasate();
   elencoCasateMethod();
+  contaBacchettePerCasate();
 };
 
 elencoCasateMethod = () => {
@@ -168,9 +243,11 @@ elencoCasateMethod = () => {
   }
 
   document.getElementById("inserimento-casata").innerHTML = codice;
+  contaBacchettePerCasate();
 };
 
 const stampaCasate = () => {
+  contaBacchettePerCasate();
   let codice;
 
   elencoCasateLocal = JSON.parse(localStorage.getItem("elencoCasateLocal"));
@@ -182,6 +259,9 @@ const stampaCasate = () => {
       <td>${item.descrizione}</td>
       <td>${item.logo}</td>
       <td>${item.numero}</td>
+      <td><button class="btn btn-danger" onclick="eliminaCasata(${idx})">
+                        <i class="fa-solid fa-trash"></i>
+                    </button></td>
     </tr>`;
   }
 
@@ -192,6 +272,7 @@ let elencoBacchetteLocal = localStorage.getItem("elencoBacchetteLocal");
 
 if (!elencoBacchetteLocal) {
   localStorage.setItem("elencoBacchetteLocal", JSON.stringify([]));
+  ss;
 }
 
 let elencoCasateLocal = localStorage.getItem("elencoCasateLocal");
@@ -200,27 +281,37 @@ if (!elencoCasateLocal) {
   localStorage.setItem("elencoCasateLocal", JSON.stringify([]));
 }
 
-const contaBacchettePerCasate = (nomeCasata) => {
-  let elencoBacchetteLocal = JSON.parse(
-    localStorage.getItem("elencoBacchetteLocal")
-  );
-
-  let contatore = 0;
-
-  for (let [idx, item] of elencoBacchetteLocal.entries()) {
-    if (nomeCasata == item.casata.value) {
-      contatore++;
-    }
-
-    return contatore;
-  }
-};
-
 const chiudiViewCasate = () => {
   $("#visualizzaCasate").modal("hide");
 };
 
-console.log(contaBacchettePerCasate("lorenzo"));
+const eliminaCasata = (indice) => {
+  let elencoCasateLocal = JSON.parse(localStorage.getItem("elencoCasateLocal"));
+  let elencoBacchetteLocal = JSON.parse(
+    localStorage.getItem("elencoBacchetteLocal")
+  );
+  let nomeCasata = elencoCasateLocal[indice].nome;
+
+  for (let [idx, item] of elencoBacchetteLocal.entries()) {
+    if (item.casata == nomeCasata) {
+      item.casata = "Nessuno";
+    }
+  }
+
+  elencoCasateLocal.splice(indice, 1);
+  stampaCasate();
+
+  localStorage.setItem("elencoCasateLocal", JSON.stringify(elencoCasateLocal));
+  localStorage.setItem(
+    "elencoBacchetteLocal",
+    JSON.stringify(elencoBacchetteLocal)
+  );
+
+  stampaCasate();
+  stampa();
+};
 
 stampa();
 stampaCasate();
+
+contaBacchettePerCasate();
